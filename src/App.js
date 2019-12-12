@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import "./App.css"
+import { GameProvider } from "./contexts/GameContext"
+import RenderRouter from "./views/RenderRouter"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [view, setView] = React.useState()
+
+    React.useEffect(() => {
+        setTimeout(() => {
+            setView("CREATE_USER")
+        }, 3000)
+    }, [])
+
+    const log = (...items) => {
+        console.log(`${items}`)
+    }
+
+    return (
+        <GameProvider value={{ log }}>
+            <div className="App">
+                <RenderRouter view={view} />
+            </div>
+        </GameProvider>
+    )
 }
 
-export default App;
+export default App
