@@ -10,9 +10,6 @@ export default function CreateUser() {
         if (e.target.id === "create") {
             socket.emit("createMatch", username)
         }
-        if (e.target.id === "join") {
-            socket.emit("joinMatch", username)
-        }
     }
 
     return (
@@ -25,9 +22,6 @@ export default function CreateUser() {
             />
             <button id="create" onClick={goToMatch}>
                 Create a new Match
-            </button>
-            <button id="join" onClick={goToMatch}>
-                Join a Match
             </button>
         </div>
     )
