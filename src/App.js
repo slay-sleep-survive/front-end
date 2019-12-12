@@ -7,6 +7,7 @@ import RenderRouter from "./views/RenderRouter"
 
 function App() {
     const [socket, setSocket] = React.useState()
+    const [match, setMatch] = React.useState()
     const matchLink = window.location.pathname.replace("/", "")
 
     // Needed for development to test on both phone and computer
@@ -19,11 +20,13 @@ function App() {
         if (socket) {
             console.log(socket)
             socket.emit("joinMatch", matchLink)
+            socket.on("matchInfo", newMatch => setMatch(newMatch))
+            socket.on("allMatchesReturn", console.log)
         }
-    }, [socket, matchLink])
+    }, [socket, matchLink, urlBase])
 
     return (
-        <GameProvider value={{ socket }}>
+        <GameProvider value={{ socket, match }}>
             <div className="App">
                 <RenderRouter />
             </div>
