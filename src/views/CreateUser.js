@@ -3,15 +3,15 @@ import { GameContext } from "../contexts/GameContext"
 
 export default function CreateUser() {
     const [username, setUsername] = React.useState()
-    const { log } = React.useContext(GameContext)
+    const { socket } = React.useContext(GameContext)
 
     const goToMatch = e => {
         e.preventDefault()
         if (e.target.id === "create") {
-            log(e.target.id, "CREATE")
+            socket.emit("createMatch", username)
         }
         if (e.target.id === "join") {
-            log(e.target.id, "JOIN")
+            socket.emit("joinMatch", username)
         }
     }
 
