@@ -7,10 +7,15 @@ import RenderRouter from "./views/RenderRouter"
 
 function App() {
     const [socket, setSocket] = React.useState();
+    const matchLink = window.location.pathname.replace("/", "");
 
     React.useEffect(() => {
-        setSocket(io.connect("http://localhost:2019"))
-    }, [])
+        if (!socket)
+            setSocket(io.connect("http://localhost:2019"))
+        if (socket)
+            socket.emit("joinMatch", matchLink)
+
+    }, [socket, matchLink])
 
     return (
         <GameProvider value={{ socket }}>
