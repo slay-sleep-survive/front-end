@@ -4,12 +4,11 @@ import { GameProvider } from "./contexts/GameContext"
 import RenderRouter from "./views/RenderRouter"
 
 function App() {
-
     const [view, setView] = React.useState()
 
     React.useEffect(() => {
         setTimeout(() => {
-            setView("CREATE_USER");
+            setView("CREATE_USER")
         }, 3000)
     }, [])
 
