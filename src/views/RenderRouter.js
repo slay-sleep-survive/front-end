@@ -2,6 +2,7 @@ import React from "react"
 import Loading from "./Loading"
 import CreateUser from "./CreateUser"
 import { GameContext } from "../contexts/GameContext"
+import GameSettings from "./GameSettings"
 
 export default function RenderRouter() {
 
@@ -18,6 +19,9 @@ export default function RenderRouter() {
     switch (view) {
         case "CREATE_USER":
             return <CreateUser />
+
+        case "GAME_SETTINGS":
+            return <GameSettings />
 
         default:
             return <Loading />
